@@ -14,11 +14,11 @@ const AllTasksView = (props) => {
     return (
         <div>
             {tasks.map((task) => {
-                let title = task.title;
+                let desc = task.description;
                 return (
                     <div key={task.id}>
-                    <Link to={`/course/${course.id}`}>
-                        <h1> {title} </h1>
+                    <Link to={`/tasks/${task.id}`}>
+                        <h1> {desc} </h1>
                     </Link>
                     </div>
                 );

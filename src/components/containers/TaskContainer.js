@@ -12,7 +12,7 @@ class TaskContainer extends Component {
   render() {
     return (
       <TaskView 
-        Task={this.props.Task}
+        task={this.props.task}
       />
     );
   }
@@ -21,7 +21,7 @@ class TaskContainer extends Component {
 // map state to props
 const mapState = (state) => {
   return {
-    Task: state.Task,
+    task: state.task,
   };
 };
 

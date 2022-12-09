@@ -5,7 +5,7 @@ const HomePageView = () => {
     return (
       <div>
         <h6>Final Project</h6>
-        <Link to={'/tasks'} > All Courses </Link>
+        <Link to={'/tasks'} > Tasks </Link>
       </div>
     );    
   }

@@ -9,8 +9,9 @@ class EditTaskContainer extends Component {
     constructor(props){
         super(props);
         this.state = {
-          title: "", 
-          timeslot: "",
+          description: "", 
+          priorityLevel: 0,
+          completionStatus: false,
           employeeId: null, 
           redirect: false,
           redirectId: null
@@ -21,8 +22,9 @@ class EditTaskContainer extends Component {
         //getting task ID from url
         this.props.fetchTask(this.props.match.params.id);
         this.setState({
-            title: this.props.task.title, 
-            timeslot: this.props.task.timeslot,
+            description: this.props.task.description, 
+            priorityLevel: this.props.task.priorityLevel,
+            completionStatus: this.props.task.completionStatus,
             employeeId: this.props.task.employeeId, 
         });
       }
@@ -38,8 +40,9 @@ class EditTaskContainer extends Component {
         //get new info for task from form input
         let task = {
             id: this.props.task.id,
-            title: this.state.title,
-            timeslot: this.state.timeslot,
+            description: this.state.description,
+            priorityLevel: this.state.priorityLevel,
+            completionStatus: this.state.completionStatus,
             employeeId: this.state.employeeId
         };
         
@@ -59,17 +62,21 @@ class EditTaskContainer extends Component {
     render() {
       //go to single task view of the edited task
         if(this.state.redirect) {
-          return (<Redirect to={`/task/${this.state.redirectId}`}/>)
+          return (<Redirect to={`/tasks/${this.state.redirectId}`}/>)
         }
 
         return (
             <form style={{textAlign: 'center'}} onSubmit={(e) => this.handleSubmit(e)}>
             <label style= {{color:'#11153e', fontWeight: 'bold'}}>Title: </label>
-            <input type="text" name="title" value={this.state.title} onChange ={(e) => this.handleChange(e)}/>
+            <input type="text" name="description" value={this.state.description} onChange ={(e) => this.handleChange(e)}/>
             <br/>
 
             <label style={{color:'#11153e', fontWeight: 'bold'}}>Timeslot: </label>
-            <input type="text" name="timeslot" value={this.state.timeslot} onChange={(e) => this.handleChange(e)}/>
+            <input type="text" name="priorityLevel" value={this.state.priorityLevel} onChange={(e) => this.handleChange(e)}/>
+            <br/>
+
+            <label style={{color:'#11153e', fontWeight: 'bold'}}>Timeslot: </label>
+            <input type="text" name="completionStatus" value={this.state.completionStatus} onChange={(e) => this.handleChange(e)}/>
             <br/>
   
             <label style={{color:'#11153e', fontWeight: 'bold'}}>employeeId: </label>
@@ -96,7 +103,6 @@ const mapDispatch = (dispatch) => {
     return({
         editTask: (task) => dispatch(editTaskThunk(task)),
         fetchTask: (id) => dispatch(fetchTaskThunk(id)),
-
     })
 }
 

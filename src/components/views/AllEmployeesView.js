@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const AllEmployeeView = (props) => {
   if (!props.allEmployees.length) {
-    return <div>There are no instructors.</div>;
+    return <div>There are no employees.</div>;
   }
 
   return (
@@ -13,7 +13,7 @@ const AllEmployeeView = (props) => {
         return (
           <div>
             <h1>{name}</h1>
-          <p>{instructor.department}</p>
+          <p>{employee.department}</p>
         </div>
         );
 
